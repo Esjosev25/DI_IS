@@ -4,13 +4,19 @@ using Microsoft.Extensions.Hosting;
 using DI_IS.Interfaces;
 using DI_IS;
 using DI_IS.Implements;
+using DI_IS.Implements.Examples;
+using DI_IS.Implements.Entrenador;
+using DI_IS.Implements.Pokemon;
+using DI_IS.Implements.Batalla;
 
 using IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddTransient<IExampleTransientService, ExampleTransientService>();
-        services.AddScoped<IExampleScopedService, ExampleScopedService>();
-        services.AddSingleton<IExampleSingletonService, ExampleSingletonService>();
+        services.AddSingleton<IEntrenador, EntrenadorElectrico>();
+        services.AddSingleton<IEntrenador, EntrenadorFuego>();
+        services.AddTransient<IPokemon, PokemonElectrico>();
+        services.AddTransient<IPokemon, PokemonFuego>();
+        services.AddScoped<IBatalla, Batalla>();
         services.AddTransient<ServiceLifetimeReporter>();
     })
     .Build();

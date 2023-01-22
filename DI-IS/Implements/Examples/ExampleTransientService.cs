@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using DI_IS.Interfaces;
 
-namespace DI_IS.Implements
+namespace DI_IS.Implements.Examples
 {
     internal sealed class ExampleTransientService : IExampleTransientService
     {

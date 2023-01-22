@@ -8,24 +8,18 @@ namespace DI_IS.Implements
 
     internal sealed class ServiceLifetimeReporter
     {
-        private readonly IExampleTransientService _transientService;
-        private readonly IExampleScopedService _scopedService;
-        private readonly IExampleSingletonService _singletonService;
+        private readonly IBatalla _batallaScoped;
 
-        public ServiceLifetimeReporter(
-            IExampleTransientService transientService,
-            IExampleScopedService scopedService,
-            IExampleSingletonService singletonService) =>
-            (_transientService, _scopedService, _singletonService) =
-                (transientService, scopedService, singletonService);
+
+        public ServiceLifetimeReporter(IBatalla BatallaScoped) => _batallaScoped = BatallaScoped;
 
         public void ReportServiceLifetimeDetails(string lifetimeDetails)
         {
             Console.WriteLine(lifetimeDetails);
 
-            LogService(_transientService, "Always different");
-            LogService(_scopedService, "Changes only with lifetime");
-            LogService(_singletonService, "Always the same");
+            LogService(_batallaScoped, "Batalla Scoped (Ida y Vuelta)");
+            _batallaScoped.IniciarBatalla();
+
         }
 
         private static void LogService<T>(T service, string message)
